@@ -1,11 +1,14 @@
 defmodule ListUtils do
   # Exercise 7
-  def reduce(list, reducer, accumulator) do
-
+  def reduce([], _reducer, accumulator), do: accumulator
+  def reduce([h|t], reducer, accumulator) do
+    reduce(t, reducer, reducer.(h, accumulator))
   end
 
-  def map(original, transform_fn, transformed \\ []) do
-
+  def map([], transform_fn, transformed), do: Enum.reverse(transformed)
+  def map([h|t], transform_fn, transformed \\ []) do
+    updated = [transform_fn.(h) | transformed]
+    map(t, transform_fn, updated)
   end
 
   # Exercise 8
