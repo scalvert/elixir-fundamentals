@@ -1,5 +1,8 @@
 
 formatter = fn
+  num when abs(num) >= 1_000_000 -> "#{num / 1_000_000}M"
+  num when abs(num) >= 1_000 -> "#{num / 1_000}K"
+  num -> "#{num}"
   _ -> "placeholder"
 end
 
